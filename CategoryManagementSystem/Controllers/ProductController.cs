@@ -10,6 +10,7 @@ namespace Product_Category_Management_System.Controllers
 {
     [Route("api/Product")]
     [ApiController]
+    //[Authorize]
     public class ProductController : ControllerBase
     {
         private readonly ProductCategoryContext _context;
@@ -21,7 +22,7 @@ namespace Product_Category_Management_System.Controllers
 
         [Route("GetAllProducts")]
         [HttpGet]
-        [AllowAnonymous]
+       
         public async Task<ActionResult<PagedResult>> GetProducts(int pageNumber, int pageSize)
         {
             if (pageNumber > 0 && pageSize > 0)
@@ -45,7 +46,7 @@ namespace Product_Category_Management_System.Controllers
         }
         [Route("GetProduct")]
         [HttpGet]
-        [AllowAnonymous]
+        
         public async Task<ActionResult<Product>> GetProductByFilter(string filter)
         {
             if (!string.IsNullOrEmpty(filter))
@@ -69,7 +70,7 @@ namespace Product_Category_Management_System.Controllers
         //[Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("AddProduct")]
-        [AllowAnonymous]
+       
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {
             if (product != null)
@@ -97,7 +98,7 @@ namespace Product_Category_Management_System.Controllers
 
         [HttpPut]
         [Route("EditProduct")]
-        [AllowAnonymous]
+        
         public async Task<ActionResult> EditProduct(Product product)
         {
             if (product != null)
@@ -126,7 +127,7 @@ namespace Product_Category_Management_System.Controllers
 
         [HttpDelete]
         [Route("DeleteProduct")]
-        [AllowAnonymous]
+       
         public async Task<ActionResult> DeleteProduct(Guid productId)
         {
             if (!string.IsNullOrEmpty(productId.ToString()))

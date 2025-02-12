@@ -17,7 +17,7 @@ namespace Product_Category_Management_System.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest loginRequest)
         {
-            if (loginRequest.Email == "Kapil@123" && loginRequest.Password == "123")
+            if (loginRequest.Email == "admin" && loginRequest.Password == "123")
             {
                 var claims = new[]
                 {
@@ -38,13 +38,9 @@ namespace Product_Category_Management_System.Controllers
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token)
                 });
-
-
             }
-            else
-            {
-                return BadRequest("You are not authorized.");
-            }
+            return BadRequest("");
+
         }
     }
 }

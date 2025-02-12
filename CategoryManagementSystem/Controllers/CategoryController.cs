@@ -8,7 +8,7 @@ namespace Product_Category_Management_System.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class CategoryController : ControllerBase
     {
         private readonly ProductCategoryContext _context;
@@ -20,7 +20,7 @@ namespace Product_Category_Management_System.Controllers
 
         [HttpGet]
         [Route("GetAllCategories")]
-        [AllowAnonymous]
+       
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
             return await _context.Categories.OrderByDescending(x=>x.CreatedAt).ToListAsync();
@@ -28,7 +28,7 @@ namespace Product_Category_Management_System.Controllers
 
         [HttpGet]
         [Route("GetCategory")]
-        [AllowAnonymous]
+       
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories(string name)
         {
             var res = await _context.Categories.Where(x=> name.ToLower().Contains(x.Name.ToLower())).ToListAsync();
@@ -38,7 +38,7 @@ namespace Product_Category_Management_System.Controllers
 
         [HttpPost]
         [Route("AddCategory")]
-        [AllowAnonymous]
+       
         public async Task<ActionResult<Category>> PostCategory(Category category)
         {
             try
@@ -78,7 +78,7 @@ namespace Product_Category_Management_System.Controllers
 
         [HttpGet]
         [Route("EditCategory")]
-        [AllowAnonymous]
+       
         public async Task<ActionResult> EditCategory(Guid id, string category)
         {
             if (category != null)
@@ -104,7 +104,7 @@ namespace Product_Category_Management_System.Controllers
 
         [HttpDelete]
         [Route("DeleteCategory")]
-        [AllowAnonymous]
+        
         public async Task<ActionResult> DeleteCategory(Guid CategoryId)
         {
             if (!string.IsNullOrEmpty(CategoryId.ToString()))
